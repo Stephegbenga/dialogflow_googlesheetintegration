@@ -26,7 +26,7 @@ def homepage():
     return "Google Sheets Database"
 
 
-@app.route('/webhook')
+@app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json()
     pprint(req)
