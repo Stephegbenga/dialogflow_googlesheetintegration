@@ -131,7 +131,7 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
-test.py
+processinfo.py
 # mkdocs documentation
 /site
 
