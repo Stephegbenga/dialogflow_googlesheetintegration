@@ -30,18 +30,21 @@ def homepage():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json()
-    queryText = req['queryResult']['queryText'].replace(',', '').split()
+    parameters = req['queryResult']['parameters']
+    query = [parameters['optionregulier'],parameters['optionsicouchante'],parameters['poste'],parameters['typebudget']]
     pprint(req)
     tag = req['queryResult']['intent']['displayName']
-    message = None
-    getdetail = getsimilarwords(queryText)
-    no_result = len(getdetail)
-    if no_result == 0:
-        message = "No result found"
-    else:
-        message = f"Parfait, nous avons {no_result} personnes correspondant parfaitement à vos critères:"
-    message = messageconstruct([message])
-    return message
+
+    if tag == '01-get-info-employeur':
+        message = None
+        getdetail = getsimilarwords(query)
+        no_result = len(getdetail)
+        if no_result == 0:
+            message = "No result found"
+        else:
+            message = f"Parfait, nous avons {no_result} personnes correspondant parfaitement à vos critères:"
+        message = messageconstruct([message])
+        return message
 
 
 
