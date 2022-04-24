@@ -1,6 +1,6 @@
 from flask import Flask, request
 from pprint import pprint
-app = Flask(__name__)
+# app = Flask(__name__)
 
 
 def messageconstruct(infos):
