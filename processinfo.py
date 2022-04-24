@@ -12,7 +12,7 @@ def getdatafromsheet():
     sheet = client.open("Copie de Recherche nounou").sheet1
     results = sheet.get_all_records()
     for result in results:
-        data_array = f"{result['type_de_poste']}, {result['ville']}, {result['optionsicouchante']}, {result['optionsireguliere']}".replace(',', '').split()
+        data_array = f"{result['type_de_poste']}, {result['ville']}, {result['jours de semaines']}, {result['optionsicouchante']}, {result['optionsireguliere']}".replace(',', '').split()
         data = {"name":result['nom'],"data":data_array}
         response.append(data)
     return response
@@ -26,6 +26,7 @@ def getsimilarwords(incomingwords):
             if testt != []:
                 print(f"{word['name']} --> {testt}")
                 result.append(incomingword)
+    print(result)
     return result
 
 # information = getsimilarwords(['iiididid'])
