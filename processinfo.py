@@ -28,5 +28,5 @@ def getsimilarwords(incomingwords):
                 result.append(incomingword)
     return result
 
-information = getsimilarwords(['iiididid'])
-print(len(information))
+# information = getsimilarwords(['iiididid'])
+# print(len(information))
