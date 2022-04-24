@@ -13,6 +13,10 @@ def getdatafromsheet():
     results = sheet.get_all_records()
     print(results)
     for result in results:
+        if result['optioncouchante'] == 'non couchante':
+            result['optioncouchante'] = ''
+        if result['optionregulier'] == 'non regulier':
+            result['optionregulier'] = ''
         data_array = f"{result['poste']}, {result['location']}, {result['nounoulocation']}, {result['optionregulier']}, {result['jours']}, {result['optioncouchante']}, {result['optionregulier']}".replace(',', '').split()
         data = {"name":result['name'],"data":data_array}
         response.append(data)
