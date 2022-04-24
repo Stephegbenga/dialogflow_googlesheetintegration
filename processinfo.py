@@ -9,12 +9,12 @@ def getdatafromsheet():
              "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
     creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
     client = gspread.authorize(creds)
-    sheet = client.open("Copie de Recherche nounou").sheet1
+    sheet = client.open("Recherche nounou").worksheet("employees_2")
     results = sheet.get_all_records()
-    # print(results)
+    print(results)
     for result in results:
-        data_array = f"{result['type_de_poste']}, {result['ville']}, {result['jours de semaines']}, {result['optionsicouchante']}, {result['optionsireguliere']}".replace(',', '').split()
-        data = {"name":result['nom'],"ref_no":result['Référence'],"data":data_array}
+        data_array = f"{result['poste']}, {result['location']}, {result['nounoulocation']}, {result['optionregulier']}, {result['jours']}, {result['optioncouchante']}, {result['optionregulier']}".replace(',', '').split()
+        data = {"name":result['name'],"data":data_array}
         response.append(data)
     return response
 
@@ -35,5 +35,5 @@ def getsimilarwords(incomingwords):
     print(final_result)
     return final_result
 
-# information = getsimilarwords(['iiididid'])
-# print(len(information))
+information = getsimilarwords(['casablanca'])
+print(len(information))
