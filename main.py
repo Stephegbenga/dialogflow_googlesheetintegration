@@ -39,7 +39,7 @@ def webhook():
     if no_result == 0:
         message = "No result found"
     else:
-        message = f"There are {no_result} found on the database"
+        message = f"Parfait, nous avons {no_result} personnes correspondant parfaitement à vos critères:"
     message = messageconstruct([message])
     return message
 
