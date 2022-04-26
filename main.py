@@ -30,9 +30,9 @@ def homepage():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json()
-    parameters = req['queryResult']['parameters']
-    query = [parameters['optionregulier'],parameters['optionsicouchante'],parameters['poste'],parameters['typebudget']]
     pprint(req)
+    parameters = req['queryResult']['parameters']
+    query = {"reg_option":parameters['optionregulier'],"couch":parameters['optionsicouchante'],"post":parameters['poste'],"type_budget":parameters['typebudget']}
     tag = req['queryResult']['intent']['displayName']
 
     if tag == '01-get-info-employeur':

@@ -1,8 +1,9 @@
 import difflib
 import gspread
+from pprint import pprint
 from oauth2client.service_account import ServiceAccountCredentials
 
-
+# Get Data From Google Sheet
 def getdatafromsheet():
     response = []
     scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
@@ -17,21 +18,26 @@ def getdatafromsheet():
             result['optioncouchante'] = ''
         if result['optionregulier'] == 'non regulier':
             result['optionregulier'] = ''
-        data_array = f"{result['poste']}, {result['location']}, {result['nounoulocation']}, {result['optionregulier']}, {result['jours']}, {result['optioncouchante']}, {result['optionregulier']}".replace(',', '').split()
-        data = {"name":result['name'],"data":data_array}
+        data = {"name":result['name'],"location":result['location'], "reg_option": result['optionregulier'],"couch":result['optionsicouchante'], "optionmobilite":result['optionmobilite'], "post":result['poste']}
         response.append(data)
+    pprint(response)
     return response
 
-def getsimilarwords(incomingwords):
+
+# Get The Nearly Similar Words
+def getsimilarwords(incomingword):
     result = []
     final_result =[]
-    words = getdatafromsheet()
-    for word in words:
-        for incomingword in incomingwords:
-            testt = difflib.get_close_matches(incomingword, word['data'])
-            if testt != []:
-                print(f"{word['name']} --> {testt}")
-                result.append(word)
+    sheet_datas = getdatafromsheet()
+    for sheet_data in sheet_datas:
+        location_t = difflib.get_close_matches(incomingword['location'], [sheet_data['location']])
+        post_t = difflib.get_close_matches(incomingword['post'], [sheet_data['post']])
+        reg_option_t = difflib.get_close_matches(incomingword['reg_option'], [sheet_data['reg_option']])
+        couch_t = difflib.get_close_matches(incomingword['couch_t'], [sheet_data['couch_t']])
+
+        if location_t != [] and  post_t != [] and reg_option_t != [] and couch_t != []:
+            print(sheet_data)
+            result.append(sheet_data)
     print(result)
     for i in range(len(result)):
         if result[i] not in final_result:
@@ -39,5 +45,6 @@ def getsimilarwords(incomingwords):
     print(final_result)
     return final_result
 
-information = getsimilarwords(['casablanca'])
-print(len(information))
+
+testt = getsimilarwords("hello")
+print(testt)
