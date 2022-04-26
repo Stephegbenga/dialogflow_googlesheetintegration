@@ -18,7 +18,7 @@ def getdatafromsheet():
             result['optioncouchante'] = 'conotconcho'
         if result['optionregulier'] == 'non regulier':
             result['optionregulier'] = 'rekolarni'
-        data = {"name":result['name'],"location":result['location'], "reg_option": result['optionregulier'],"couch":result['optionsicouchante'], "optionmobilite":result['optionmobilite'], "post":result['poste']}
+        data = {"name":result['name'],"location":result['location'], "reg_option": result['optionregulier'],"couch":result['optioncouchante'], "optionmobilite":result['optionmobilite'], "phonenumber":result['phone number'], "post":result['poste']}
         response.append(data)
     pprint(response)
     return response
@@ -33,18 +33,14 @@ def getsimilarwords(incomingword):
         location_t = difflib.get_close_matches(incomingword['location'], [sheet_data['location']])
         post_t = difflib.get_close_matches(incomingword['post'], [sheet_data['post']])
         reg_option_t = difflib.get_close_matches(incomingword['reg_option'], [sheet_data['reg_option']])
-        couch_t = difflib.get_close_matches(incomingword['couch_t'], [sheet_data['couch_t']])
+        couch_t = difflib.get_close_matches(incomingword['couch'], [sheet_data['couch']])
 
         if location_t != [] and  post_t != [] and reg_option_t != [] and couch_t != []:
             print(sheet_data)
             result.append(sheet_data)
-    print(result)
     for i in range(len(result)):
         if result[i] not in final_result:
             final_result.append(result[i])
-    print(final_result)
     return final_result
 
 
-testt = getsimilarwords("hello")
-print(testt)

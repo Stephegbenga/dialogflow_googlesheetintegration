@@ -51,13 +51,24 @@ def webhook():
 
     if tag == '01-get-info-employeur':
         message = None
-        getdetail = getsimilarwords(query)
-        no_result = len(getdetail)
+        getdetails = getsimilarwords(query)
+
+        info_array = []
+        for count, getdetail in enumerate(getdetails, start=1):
+            info = f"{count} Name: {getdetail['name']}\nPhone Number: {getdetails['phonenumber']}\n\n"
+            info_array.append(info)
+
+        main_message = []
+        no_result = len(getdetails)
         if no_result == 0:
             message = "No result found"
         else:
-            message = f"Parfait, nous avons {no_result} personnes correspondant parfaitement à vos critères:"
-        message = messageconstruct([message])
+            message1 = f"Parfait, nous avons {no_result} personnes correspondant parfaitement à vos critères:"
+            message2 = "".join(info_array)
+            main_message.append(message1)
+            main_message.append(message2)
+
+        message = messageconstruct(main_message)
         return message
 
 
