@@ -33,17 +33,17 @@ def webhook():
     pprint(req)
     parameters = req['queryResult']['parameters']
     query = {"reg_option":parameters['optionregulier'],"couch":parameters['optionsicouchante'],"post":parameters['poste'],"type_budget":parameters['typebudget']}
-    if query['optioncouchante'] == 'non couchante' or query['optioncouchante'] == 'non' or query['optioncouchante'] == 'no':
-        query['optioncouchante'] = 'conotconcho'
+    if query['optionsicouchante'] == 'non couchante' or query['optionsicouchante'] == 'non' or query['optionsicouchante'] == 'no':
+        query['couch'] = 'conotconcho'
 
-    if query['optioncouchante'] == 'oui' or query['optioncouchante'] == 'yes':
-        query['optioncouchante'] = 'couchante'
+    if query['optionsicouchante'] == 'oui' or query['optionsicouchante'] == 'yes':
+        query['couch'] = 'couchante'
 
     if query['optionregulier'] == 'oui' or query['optionregulier'] == 'yes':
-        query['optioncouchante'] = 'regulier'
+        query['reg_option'] = 'regulier'
 
     if query['optionregulier'] == 'no' or query['optionregulier'] == 'non' or query['optionregulier'] == 'non regulier':
-        query['optioncouchante'] = 'rekolarni'
+        query['reg_option'] = 'rekolarni'
 
 
 
