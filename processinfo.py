@@ -15,9 +15,9 @@ def getdatafromsheet():
     print(results)
     for result in results:
         if result['optioncouchante'] == 'non couchante':
-            result['optioncouchante'] = ''
+            result['optioncouchante'] = 'conotconcho'
         if result['optionregulier'] == 'non regulier':
-            result['optionregulier'] = ''
+            result['optionregulier'] = 'rekolarni'
         data = {"name":result['name'],"location":result['location'], "reg_option": result['optionregulier'],"couch":result['optionsicouchante'], "optionmobilite":result['optionmobilite'], "post":result['poste']}
         response.append(data)
     pprint(response)

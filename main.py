@@ -33,6 +33,20 @@ def webhook():
     pprint(req)
     parameters = req['queryResult']['parameters']
     query = {"reg_option":parameters['optionregulier'],"couch":parameters['optionsicouchante'],"post":parameters['poste'],"type_budget":parameters['typebudget']}
+    if query['optioncouchante'] == 'non couchante' or query['optioncouchante'] == 'non' or query['optioncouchante'] == 'no':
+        query['optioncouchante'] = 'conotconcho'
+
+    if query['optioncouchante'] == 'oui' or query['optioncouchante'] == 'yes':
+        query['optioncouchante'] = 'couchante'
+
+    if query['optionregulier'] == 'oui' or query['optionregulier'] == 'yes':
+        query['optioncouchante'] = 'regulier'
+
+    if query['optionregulier'] == 'no' or query['optionregulier'] == 'non' or query['optionregulier'] == 'non regulier':
+        query['optioncouchante'] = 'rekolarni'
+
+
+
     tag = req['queryResult']['intent']['displayName']
 
     if tag == '01-get-info-employeur':
