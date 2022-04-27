@@ -30,9 +30,10 @@ def homepage():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json()
-    pprint(req)
+    # pprint(req)*-**
     parameters = req['queryResult']['parameters']
-    query = {"reg_option":parameters['optionregulier'],"couch":parameters['optionsicouchante'],"post":parameters['poste'],"type_budget":parameters['typebudget']}
+    pprint(parameters)
+    query = {"reg_option":parameters['optionregulier'],"couch":parameters['optionsicouchante'],"post":parameters['poste'],"type_budget":parameters['typebudget'], "location":parameters['location']}
     if query['couch'] == 'non couchante' or query['couch'] == 'non' or query['couch'] == 'no':
         query['couch'] = 'conotconcho'
 
