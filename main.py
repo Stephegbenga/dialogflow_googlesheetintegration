@@ -53,6 +53,7 @@ def webhook():
     if tag == '01-get-info-employeur':
         message = None
         getdetails = getsimilarwords(query)
+        print(getdetails)
 
         info_array = []
         for count, getdetail in enumerate(getdetails, start=1):
