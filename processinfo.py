@@ -12,7 +12,6 @@ def getdatafromsheet():
     client = gspread.authorize(creds)
     sheet = client.open("Recherche nounou").worksheet("employees_2")
     results = sheet.get_all_records()
-    print(results)
     for result in results:
         if result['optioncouchante'] == 'non couchante':
             result['optioncouchante'] = 'conotconcho'
