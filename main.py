@@ -63,10 +63,8 @@ def webhook():
             main_message.append(message)
         else:
             info_array = []
-            count = 0
-            for getdetail in getdetails:
-                count = count + 1
-                info = f"{count} Name: {getdetail['name']}\nPhone Number: {getdetails['phonenumber']}\n\n"
+            for count, getdetail in enumerate(getdetails, start=1):
+                info = f"{count} Name: {getdetail['name']}\nPhone Number: {getdetail['phonenumber']}\n\n"
                 info_array.append(info)
 
             message1 = f"Parfait, nous avons {no_result} personnes correspondant parfaitement à vos critères:"
