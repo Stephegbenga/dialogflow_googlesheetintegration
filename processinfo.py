@@ -34,7 +34,7 @@ def getsimilarwords(incomingword):
         reg_option_t = difflib.get_close_matches(incomingword['reg_option'], [sheet_data['reg_option']])
         couch_t = difflib.get_close_matches(incomingword['couch'], [sheet_data['couch']])
 
-        if location_t != [] and  post_t != [] and reg_option_t != [] and couch_t != []:
+        if location_t != [] and post_t != [] and reg_option_t != [] and couch_t != []:
             print(sheet_data)
             result.append(sheet_data)
     for i in range(len(result)):

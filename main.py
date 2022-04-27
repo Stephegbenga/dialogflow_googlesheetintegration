@@ -53,7 +53,7 @@ def webhook():
     if tag == '01-get-info-employeur':
         message = None
         getdetails = getsimilarwords(query)
-        # print(getdetails)
+        print(getdetails)
 
 
         main_message = []
