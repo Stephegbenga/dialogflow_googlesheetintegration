@@ -55,16 +55,18 @@ def webhook():
         getdetails = getsimilarwords(query)
         print(getdetails)
 
-        info_array = []
-        for count, getdetail in enumerate(getdetails, start=1):
-            info = f"{count} Name: {getdetail['name']}\nPhone Number: {getdetails['phonenumber']}\n\n"
-            info_array.append(info)
 
         main_message = []
         no_result = len(getdetails)
         if no_result == 0:
             message = "No result found"
+            main_message.append(message)
         else:
+            info_array = []
+            for count, getdetail in enumerate(getdetails, start=1):
+                info = f"{count} Name: {getdetail['name']}\nPhone Number: {getdetails['phonenumber']}\n\n"
+                info_array.append(info)
+
             message1 = f"Parfait, nous avons {no_result} personnes correspondant parfaitement à vos critères:"
             message2 = "".join(info_array)
             main_message.append(message1)
