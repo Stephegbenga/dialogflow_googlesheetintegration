@@ -43,7 +43,7 @@ def webhook():
     if query['reg_option'] == 'oui' or query['reg_option'] == 'yes':
         query['reg_option'] = 'regulier'
 
-    if query['reg_option'] == 'no' or query['reg_option'] == 'non' or query['reg_option'] == 'non regulier' or query['reg_option'] == ['de temps en temps']:
+    if query['reg_option'] == 'no' or query['reg_option'] == 'non' or query['reg_option'] == 'non regulier' or query['reg_option'] == ['de temps en temps'] or query['reg_option'] == f"['de temps en temps']":
         query['reg_option'] = 'rekolarni'
 
 
