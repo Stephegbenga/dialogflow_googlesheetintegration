@@ -19,7 +19,7 @@ def getdatafromsheet():
             result['optionregulier'] = 'rekolarni'
         data = {"name":result['name'],"location":result['location'], "reg_option": result['optionregulier'],"couch":result['optioncouchante'], "optionmobilite":result['optionmobilite'], "phonenumber":result['phone number'], "post":result['poste']}
         response.append(data)
-    # pprint(response)
+    print(response)
     return response
 
 
