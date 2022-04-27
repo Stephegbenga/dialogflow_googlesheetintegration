@@ -63,7 +63,9 @@ def webhook():
             main_message.append(message)
         else:
             info_array = []
-            for count, getdetail in enumerate(getdetails, start=1):
+            count = 0
+            for getdetail in getdetails:
+                count = count + 1
                 info = f"{count} Name: {getdetail['name']}\nPhone Number: {getdetails['phonenumber']}\n\n"
                 info_array.append(info)
 
