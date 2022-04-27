@@ -49,7 +49,7 @@ def webhook():
 
 
     tag = req['queryResult']['intent']['displayName']
-    pprint(query)
+
     if tag == '01-get-info-employeur':
         message = None
         getdetails = getsimilarwords(query)
