@@ -33,7 +33,13 @@ def webhook():
     # pprint(req)*-**
     parameters = req['queryResult']['parameters']
     pprint(parameters)
+    try:
+        parameters['optionregulier'] = parameters['optionregulier'][0]
+    except:
+        print("it's Normal")
+
     query = {"reg_option":parameters['optionregulier'],"couch":parameters['optionsicouchante'],"post":parameters['poste'],"type_budget":parameters['typebudget'], "location":parameters['any']}
+
     if query['couch'] == 'non couchante' or query['couch'] == 'non' or query['couch'] == 'no':
         query['couch'] = 'conotconcho'
 
