@@ -102,7 +102,7 @@ def webhook():
         response = insertrow(database_info)
         print(response)
         message = messageconstruct([response])
-        return message
+        # return message
 
 
 if __name__ == '__main__':
