@@ -51,9 +51,9 @@ def getsimilarwords(incomingword):
 
 
 def insertrow(row):
-    sheet = opensheet("employers")
+    sheet = opensheet("employees_2")
     sheet.append_row(row)
-    return "Your information were stored on the database Succssfully"
+    return "Your information were stored on the database Successfully"
 
 
 # rowtobeinserrted = ['I', 'love', 'mercy']
