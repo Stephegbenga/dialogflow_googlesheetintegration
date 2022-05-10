@@ -4,13 +4,18 @@ from pprint import pprint
 from oauth2client.service_account import ServiceAccountCredentials
 
 # Get Data From Google Sheet
+scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
+         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+client = gspread.authorize(creds)
+
+def opensheet(sheet):
+    sheet = client.open("Recherche nounou").worksheet(sheet)
+    return sheet
+
 def getdatafromsheet():
     response = []
-    scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
-             "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
-    client = gspread.authorize(creds)
-    sheet = client.open("Recherche nounou").worksheet("employees_2")
+    sheet = opensheet("employees_2")
     results = sheet.get_all_records()
     for result in results:
         if result['optioncouchante'] == 'non couchante':
@@ -45,3 +50,16 @@ def getsimilarwords(incomingword):
     return final_result
 
 
+def insertrow(row):
+    sheet = opensheet("employers")
+    sheet.append_row(row)
+    return "Your information were stored on the database Succssfully"
+
+
+# rowtobeinserrted = ['I', 'love', 'mercy']
+# result = insertrow(rowtobeinserrted)
+# print(result)
+# if result:
+#     print("Your information were stored on the database Succssfully")
+# else:
+#     print("Unable to store these information on the database")
